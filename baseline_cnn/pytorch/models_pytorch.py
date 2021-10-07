@@ -342,22 +342,7 @@ class PrototypeLayer(nn.Module):
 
     def forward(self, input):
         # (samples_num, channel, time_steps, freq_bins)
-        if self.distance == 'euclidean':
-            x2 = input ** 2
-            x2_sum = F.conv2d(x2, weight=self.ones)
-
-            p2 = self.prototype ** 2
-            p2 = torch.sum(p2, dim=(1, 2, 3)).view(1,-1, 1, 1)
-
-            xp = F.conv2d(input, weight=self.prototype)
-            distance = F.relu_(x2_sum + p2-2 * xp).view(xp.shape[0:2])
-            #distance = torch.norm(self.prototype-x, p=2, dim=(2, 3, 4))
-            #distance = torch.sum(torch.pow((x - self.prototype), 2), dim=(2, 3, 4))   # (samples_num, n_proto)
-            #distance = torch.unsqueeze(distance, dim=2)
-            #distance = torch.unsqueeze(distance, dim=3)
-            #distance = F.relu_(distance)
-            #distance = distance.view(distance.shape[0:2])
-        elif self.distance == 'cosine':
+        if self.distance == 'cosine':
             if self.proto_form == 'vector1d':
                 x = F.max_pool2d(input, kernel_size=input.shape[2:])
                 similarity = np.zeros((x.shape[0], self.n_proto), dtype=np.float)
@@ -422,26 +407,6 @@ class PrototypeLayer(nn.Module):
                 similarity = F.avg_pool2d(similarity, kernel_size=similarity.shape[2:])
                 similarity = similarity.view(similarity.shape[0:2])
 
-            elif self.proto_form == 'vector2d_avgp_att':
-                x = torch.flatten(input, start_dim=2, end_dim=-1) # 16, 512, 56
-                similarity_all = np.zeros((x.shape[0], self.n_proto, x.shape[2], x.shape[2]), dtype=np.float) # 16, 4, 56, 56
-                similarity_all = move_data_to_gpu(similarity_all, True)
-                a = torch.unsqueeze(x, dim=3)  # 16, 512, 56, 1
-                b = torch.unsqueeze(self.prototype, dim=2) # 4, 512, 1, 56
-                sim_lowbound = move_data_to_gpu((1E-8) * torch.ones((x.shape[2], x.shape[2]), dtype=torch.float), True)
-                for i in range(0, similarity_all.shape[0]):
-                    for j in range(0, similarity_all.shape[1]):
-                        similarity_all[i][j] = torch.sum(a[i] * b[j], dim=0) / torch.maximum(torch.norm(a[i], p=2, dim=0)*torch.norm(b[j], p=2, dim=0), sim_lowbound)
-                similarity_att = torch.mean(similarity_all, 3) # 16, 4, 56
-
-                similarity_att = F.softmax(similarity_att, dim=-1)  # (16, 4, 56)
-                similarity = np.zeros((x.shape[0], self.n_proto, x.shape[1]), dtype=np.float)
-                similarity = move_data_to_gpu(similarity, True)
-                for i in range(0, similarity.shape[0]):
-                    for j in range(0, similarity.shape[1]):
-                        similarity[i][j] = torch.sum(torch.unsqueeze(similarity_att[i][j], dim=0) * x[i] * self.prototype[j], dim=-1) #?
-                similarity = F.relu_(self.fc(similarity))
-                similarity = similarity.view(similarity.shape[0:2])
 
             elif self.proto_form == 'vector2d_maxp':
                 x = input
@@ -486,35 +451,12 @@ class PrototypeLayer(nn.Module):
                 similarity = F.relu_(self.fc(similarity))
                 similarity = similarity.view(similarity.shape[0:2])
 
-            elif self.proto_form == 'vector2d_maxpx_att':
-                x = torch.flatten(input, start_dim=2, end_dim=-1) # 16, 512, 56
-                similarity_all = np.zeros((x.shape[0], self.n_proto, x.shape[2], x.shape[2]), dtype=np.float) # 16, 4, 56, 56
-                similarity_all = move_data_to_gpu(similarity_all, True)
-                a = torch.unsqueeze(x, dim=3)  # 16, 512, 56, 1
-                b = torch.unsqueeze(self.prototype, dim=2) # 4, 512, 1, 56
-                sim_lowbound = move_data_to_gpu((1E-8) * torch.ones((x.shape[2], x.shape[2]), dtype=torch.float), True)
-                for i in range(0, similarity_all.shape[0]):
-                    for j in range(0, similarity_all.shape[1]):
-                        similarity_all[i][j] = torch.sum(a[i] * b[j], dim=0) / torch.maximum(torch.norm(a[i], p=2, dim=0)*torch.norm(b[j], p=2, dim=0), sim_lowbound)
-                similarity_att, _ = torch.max(similarity_all, 3) # 16, 4, 56
-                similarity_att_p, _ = torch.max(similarity_all, 2) # 16, 4, 56
-
-                similarity_att = F.softmax(similarity_att, dim=-1)  # (16, 4, 56)
-                similarity_att_p = F.softmax(similarity_att_p, dim=-1)  # (16, 4, 56)
-                similarity = np.zeros((x.shape[0], self.n_proto, x.shape[1]), dtype=np.float)
-                similarity = move_data_to_gpu(similarity, True)
-                for i in range(0, similarity.shape[0]):
-                    for j in range(0, similarity.shape[1]):
-                        similarity[i][j] = torch.sum(torch.unsqueeze(similarity_att[i][j], dim=0) * x[i] * torch.unsqueeze(similarity_att_p[i][j], dim=0) * self.prototype[j], dim=-1)
-                similarity = F.relu_(self.fc(similarity))
-                similarity = similarity.view(similarity.shape[0:2])
 
         else:
             print('Wrong distance type!')
 
-        if self.distance == 'euclidean':
-            return distance, self.prototype
-        elif self.distance == 'cosine':
+
+        if self.distance == 'cosine':
             return similarity, self.prototype
         else:
             print('Wrong distance type!')
