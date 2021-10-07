@@ -41,6 +41,7 @@ Prototype-2D-MaxSim-Att: PROTO_FORM='vector2d_maxp_att'
 
 ## Cite
 If you use the code from this repositroy, please cite the following reference in your paper:
+
 [1] Zhao Ren, Thanh Tam Nguyen, and Wolfgang Nejdl. "Prototype learning for interpretable respiratory sound analysis." ArXiv, 2021, 5 pages. 
 
 
