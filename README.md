@@ -2,7 +2,7 @@
 
 This is a Python and PyTorch code for our prototype learning framework. 
 
-The prototype learning framework aims to generate prototypes of audio singnals for a respiratory sound classification task (normal/crackle/wheeze). 
+The prototype learning framework aims to generate prototypes of audio singnals for a respiratory sound classification task (normal/crackle/wheeze/both). 
 
 The experiments are based on the ICBHI 2017 challenge database.
 
