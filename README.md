@@ -1,6 +1,6 @@
 # PrototypeSound
 
-This is a Python and PyTorch code for our prototype learning framework in the preprint: [Prototype learning for interpretable respiratory sound analysis](https://arxiv.org/pdf/2110.03536.pdf). 
+This is a Python and PyTorch code for our prototype learning framework in our preprint: [Prototype learning for interpretable respiratory sound analysis](https://arxiv.org/pdf/2110.03536.pdf). 
 
 The prototype learning framework aims to generate prototypes of audio singnals for a respiratory sound classification task (normal/crackle/wheeze/both). 
 
