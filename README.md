@@ -1,5 +1,6 @@
 # Prototype Learning for Interpretable Respiratory Sound Analysis
 [![arXiv](https://img.shields.io/badge/arXiv-2110.03536-b31b1b.svg)](https://arxiv.org/abs/2110.03536)
+[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97-Models%20on%20Hub-yellow)](https://huggingface.co/models)
 
 ![](paper/framework.png)
 
