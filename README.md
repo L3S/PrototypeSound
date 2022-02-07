@@ -1,6 +1,22 @@
-# PrototypeSound
+# Prototype Learning for Interpretable Respiratory Sound Analysis
+[![arXiv](https://img.shields.io/badge/arXiv-2111.12912-b31b1b.svg)](https://arxiv.org/abs/2110.03536)
 
 This is a Python and PyTorch code for the prototype learning framework in our paper: [Prototype learning for interpretable respiratory sound analysis](https://arxiv.org/pdf/2110.03536.pdf). 
+
+>Zhao Ren, Thanh Tam Nguyen, and Wolfgang Nejdl, 2022. Prototype Learning for Interpretable Respiratory Sound Analysis. arXiv preprint arXiv:2110.03536.
+
+## Citation
+
+```
+@article{zhao2021prototype,
+  title={Prototype Learning for Interpretable Respiratory Sound Analysis},
+  author={Ren, Zhao and Nguyen, Thanh Tam and Nejdl, Wolfgang},
+  booktitle = {{IEEE} International Conference on Acoustics, Speech and Signal Processing},
+  year={2022}
+}
+```
+
+## Abstract
 
 The prototype learning framework aims to generate prototypes of audio singnals for a respiratory sound classification task (normal/crackle/wheeze/both). 
 
@@ -39,9 +55,9 @@ Prototype-2D-MaxSim-Att: PROTO_FORM='vector2d_maxp_att'
 
 
 
-## Cite
-If you use the code from this repositroy, please cite the following reference in your paper:
+<> ## Cite
+<> If you use the code from this repositroy, please cite the following reference in your paper:
 
-[1] Zhao Ren, Thanh Tam Nguyen, and Wolfgang Nejdl. "Prototype learning for interpretable respiratory sound analysis." arXiv:2110.03536, 2021, 5 pages. 
+<> [1] Zhao Ren, Thanh Tam Nguyen, and Wolfgang Nejdl. "Prototype learning for interpretable respiratory sound analysis." arXiv:2110.03536, 2021, 5 pages. 
 
 
