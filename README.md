@@ -1,6 +1,8 @@
 # Prototype Learning for Interpretable Respiratory Sound Analysis
 [![arXiv](https://img.shields.io/badge/arXiv-2111.12912-b31b1b.svg)](https://arxiv.org/abs/2110.03536)
 
+![](paper/framework.png)
+
 This is a Python and PyTorch code for the prototype learning framework in our paper: [Prototype learning for interpretable respiratory sound analysis](https://arxiv.org/pdf/2110.03536.pdf). 
 
 >Zhao Ren, Thanh Tam Nguyen, and Wolfgang Nejdl, 2022. Prototype Learning for Interpretable Respiratory Sound Analysis. arXiv preprint arXiv:2110.03536.
