@@ -7,16 +7,29 @@ This is a Python and PyTorch code for the prototype learning framework in our pa
 
 <!--[Prototype learning for interpretable respiratory sound analysis](https://arxiv.org/pdf/2110.03536.pdf).-->
 
->Zhao Ren, Thanh Tam Nguyen, and Wolfgang Nejdl, 2022. Prototype Learning for Interpretable Respiratory Sound Analysis. arXiv preprint arXiv:2110.03536.
+>Zhao Ren, Thanh Tam Nguyen, and Wolfgang Nejdl. Prototype Learning for Interpretable Respiratory Sound Analysis. In ICASSP 2022.
 
 ## Citation
 
 ```
-@article{zhao2021prototype,
+@article{zhao2022prototype,
   title={Prototype Learning for Interpretable Respiratory Sound Analysis},
   author={Ren, Zhao and Nguyen, Thanh Tam and Nejdl, Wolfgang},
   booktitle = {{IEEE} International Conference on Acoustics, Speech and Signal Processing},
   year={2022}
+}
+```
+
+or 
+
+```
+@misc{ren2022prototype,
+      title={Prototype Learning for Interpretable Respiratory Sound Analysis}, 
+      author={Zhao Ren and Thanh Tam Nguyen and Wolfgang Nejdl},
+      year={2022},
+      eprint={2110.03536},
+      archivePrefix={arXiv},
+      primaryClass={cs.SD}
 }
 ```
 
