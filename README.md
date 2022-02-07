@@ -9,7 +9,7 @@ This is a Python and PyTorch code for the prototype learning framework in our pa
 
 <!--[Prototype learning for interpretable respiratory sound analysis](https://arxiv.org/pdf/2110.03536.pdf).-->
 
->Zhao Ren, Thanh Tam Nguyen, and Wolfgang Nejdl. Prototype Learning for Interpretable Respiratory Sound Analysis. In ICASSP 2022.
+>Zhao Ren, Thanh Tam Nguyen, and Wolfgang Nejdl. Prototype Learning for Interpretable Respiratory Sound Analysis. In ICASSP 2022. https://arxiv.org/pdf/2110.03536.pdf
 
 ## Citation
 
